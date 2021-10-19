@@ -32,6 +32,8 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <a href="/students/create" class="btn btn-primary">Add Data</a>
+                    <br><br>
                 </div>
             </div>
         </div>
