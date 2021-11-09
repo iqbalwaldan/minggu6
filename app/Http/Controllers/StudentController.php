@@ -41,10 +41,16 @@ class StudentController extends Controller
     {
         //add data
         $student = new Student;
+
+        if($request->file('photo')){
+            $image_name = $request->file('photo')->store('images','public');
+        }
+
         $student->nim = $request->nim;
         $student->name = $request->name;
         $student->departement = $request->departement;
         $student->phone_number = $request->phone_number;
+        $student->photo = $image_name;
 
         $kelas = new Kelas;
         $kelas->id = $request->Kelas;
@@ -98,6 +104,13 @@ class StudentController extends Controller
         $student->departement = $request->departement;
         $student->phone_number = $request->phone_number;
         
+        if($student->photo && file_exists(storage_path('app/public/'. $student->photo)))
+        {
+            \Storage::delete('public/'.$student->photo);
+        }
+        $image_name = $request->file('photo')->store('images','public');
+        $student->photo = $image_name;
+
         $kelas = new Kelas;
         $kelas->id = $request->Kelas;
 
@@ -128,8 +141,7 @@ class StudentController extends Controller
      */
     public function detail_nilai($id)
     {
-        $courses= Course::find($id); 
         $students= Student::find($id);        
-        return view('students.nilai',['students'=>$students,'courses'=>$courses]);
+        return view('students.nilai',['student'=>$students]);
     }
 }
