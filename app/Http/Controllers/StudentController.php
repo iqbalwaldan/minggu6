@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\Kelas;
 use App\Models\Course;
+use PDF;
 
 class StudentController extends Controller
 {
@@ -144,4 +145,17 @@ class StudentController extends Controller
         $students= Student::find($id);        
         return view('students.nilai',['student'=>$students]);
     }
+    
+    /**
+     * 
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function report($id){
+        $student = Student::find($id);
+        $pdf = PDF::loadview('students.report',['student'=>$student]);
+        return $pdf->stream();
+    }
+
 }

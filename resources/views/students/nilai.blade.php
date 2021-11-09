@@ -45,8 +45,9 @@
                             @endforeach                            
                         </tbody>
                     </table>
-                    <a href="/students" class="btn btn-primary">Back</a>
+                    <a href="/students/{{$student->id}}/report" class="btn btn-success" target="_blank">PRINT PDF</a>
                     <br><br>
+                    <a href="/students" class="btn btn-primary">Back</a>
                 </div>                    
             </div>               
         </div>            
