@@ -16,16 +16,22 @@
 
                     <table class="table teble-responsive table-striped">
                         <thead>
+                        <thead>
                             <tr>
+                                <th>Username</th>
                                 <th>Name</th>
                                 <th>Email</th>
+                                <th>Role</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($user as $u)
                             <tr>
+                                <td>{{ $u->username }}</td>
                                 <td>{{ $u->name }}</td>
                                 <td>{{ $u->email }}</td>
+                                <td>{{ $u->role }}</td>
                                 <td>
                                     <form action="/users/{{$u->id}}" method="post">
                                         <a href="/users/{{$u->id}}/edit" class="btn btn-warning">Edit</a>
